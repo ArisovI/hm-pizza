@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer } from "react";
 
 import { Context } from "./context";
 import reducer from "./reducer";
@@ -11,9 +11,7 @@ import CreatePizza from "./Pages/CreatePizza";
 function App() {
   const [state, dispatch] = useReducer(reducer, Product);
   const value = { state, dispatch };
-  // useEffect(() => {
-  console.log("123");
-  // }, []);
+
   return (
     <Context.Provider value={value}>
       <div className="app">

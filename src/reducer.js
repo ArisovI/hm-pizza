@@ -1,73 +1,75 @@
 export default function (state, action) {
   switch (action.type) {
-    case "addIngredients":
+    case "addItem":
       return {
         pizza: {
           ...state.pizza,
-          price: [+[...state.pizza.price] + +action.payload.price],
-          ingredients: [...state.pizza.ingredients, action.payload].filter(
-            (el, id) => {
-              return (
-                [...state.pizza.ingredients, action.payload].indexOf(el) === id
-              );
+          price: +state.pizza.price + +action.payload.price,
+          ingredients: [...state.pizza.ingredients].map((obj) => {
+            if (obj.text === action.payload.text) {
+              obj.total++;
             }
-          ),
-        },
-        ingredients: [
-          ...state.ingredients.map((el) => {
-            if (el.text === action.payload.text) {
-              el.total += 1;
-            }
-            return el;
+            return obj;
           }),
-        ],
+        },
+        newPizza: {
+          ...state.newPizza,
+        },
       };
 
-    case "delIngredients":
+    case "delItem":
       return {
         pizza: {
           ...state.pizza,
-          price: [
+          price:
             state.pizza.price > 3
-              ? [...state.pizza.price] - action.payload.price
+              ? state.pizza.price - action.payload.price
               : 3,
-          ],
-          ingredients: [
-            ...state.pizza.ingredients.filter((el) => {
-              if (el.total === 0) {
-                return el !== action.payload;
+          ingredients: [...state.pizza.ingredients].map((obj) => {
+            if (obj.text === action.payload.text) {
+              if (obj.total !== 0) {
+                obj.total--;
               }
-              return el;
-            }),
-          ],
-        },
-        ingredients: [...state.ingredients].map((el) => {
-          if (el.text === action.payload.text) {
-            if (el.total > 0) {
-              el.total -= 1;
             }
-          }
-          return el;
-        }),
+            return obj;
+          }),
+        },
+        newPizza: {},
       };
 
-    case "resetIngredients":
+    case "reset":
       return {
         pizza: {
           ...state.pizza,
-          price: [3.0],
-          ...(state.pizza.ingredients.length = 0),
-        },
-        ingredients: [
-          ...state.ingredients.map((el) => {
-            if (el.total !== 0) {
-              el.total = 0;
-            }
-            return el;
+          price: 3,
+          ingredients: [...state.pizza.ingredients].map((obj) => {
+            obj.total = 0;
+            return obj;
           }),
-        ],
+        },
+        newPizza: {
+          ...state.newPizza,
+        },
       };
 
+    case "saveItem":
+      console.log(action.payload);
+      return {
+        newPizza: {
+          ...state.pizza,
+          // ...state.newPizza,
+          id: action.payload,
+        },
+        pizza: {
+          ...state.pizza,
+          // ingredients: [...state.pizza.ingredients].map((obj) => {
+          //   if (obj.total != 0) {
+          //     obj.total = 0;
+          //   }
+          //   return obj;
+          // }),
+        },
+      };
     default:
       return state;
   }
