@@ -13,137 +13,76 @@ a {
 }
 li {
   list-style-type: none;
-  cursor: pointer;
 }
 
 .app {
-  ul {
-    background: rgb(49, 47, 47);
-    display: flex;
-    gap: 25px;
-    padding: 10px;
-    li {
-      color: white;
-    }
-  }
-
+  max-width: 1400px;
+  margin: 0 auto;
   &-bottom {
-    width: 1200px;
-    margin: 150px auto 0 auto;
     display: flex;
     justify-content: space-between;
-    &__left {
-      .content {
-        margin-top: 50px;
-        width: 900px;
+    margin-top: 50px;
+    &__content {
+      width: 1100px;
+      ul {
         display: flex;
         flex-wrap: wrap;
         gap: 25px;
-        img {
-          width: 200px;
-          height: 200px;
-          border: 1px solid rgb(221, 221, 223);
+        li {
+          img {
+            width: 250px;
+            height: 250px;
+            border: 1px solid red;
+          }
         }
       }
     }
-
-    &__right {
+    &__ingredients {
+      display: flex;
+      flex-direction: column;
       width: 300px;
       .title {
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-        margin-bottom: 20px;
-        button {
-          padding: 10px;
-          border: 0;
-          border-radius: 5px;
-        }
-      }
-      .items {
-        border: 1px solid ghostwhite;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 20px;
-        &-btns {
-          span {
-            padding: 10px;
-          }
-          button {
-            width: 25px;
-            height: 25px;
-            border: 0;
-            border-radius: 5px;
-          }
-        }
       }
-
-      .btns {
-        div {
-          align-items: center;
+      .ingredients {
+        display: flex;
+        flex-direction: column;
+        li {
+          padding: 20px;
+          border: 1px solid red;
           display: flex;
           justify-content: space-between;
-          padding: 20px;
-          border: 1px solid ghostwhite;
-          button {
-            padding: 10px;
-            border: 0;
-            border-radius: 5px;
+          align-items: center;
+          div {
+            button {
+              width: 30px;
+              height: 30px;
+            }
+            span {
+              padding: 10px;
+            }
           }
         }
       }
-    }
-  }
-}
-
-.load {
-  position: absolute;
-  // left: 50%;
-  top: 0;
-  left: 0;
-  // top: 50%;
-  // transform: translate(-50%, -50%);
-  display: flex;
-  width: 100%;
-  align-content: center;
-  justify-content: center;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.598);
-  &-content {
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 5px black;
-    padding: 30px;
-    margin: auto;
-    position: relative;
-    border-radius: 5px;
-    span {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      box-shadow: 0 0 5px black;
-      width: 20px;
-      border-radius: 50%;
-      height: 20px;
-      display: flex;
-      align-content: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 900;
-    }
-    &__label {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 15px;
-      input {
-        width: 65%;
-        padding: 10px;
+      .total {
+        padding: 20px;
+        border: 1px solid red;
+        display: flex;
+        justify-content: space-between;
       }
-      button {
-        width: 25%;
+      .btns {
+        &-top {
+          padding: 20px;
+          border: 1px solid red;
+          display: flex;
+          justify-content: space-between;
+        }
+        &-bottom {
+          padding: 20px;
+          border: 1px solid red;
+        }
       }
     }
   }
@@ -179,6 +118,7 @@ li {
       background: 0;
       li {
         color: black;
+        margin: 10px 0;
       }
     }
     &__btn {
@@ -195,6 +135,139 @@ li {
         &:active {
           transform: translate(0, 2px);
         }
+      }
+    }
+  }
+}
+
+.checkout-info {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // display: none;
+  &__ingredients {
+    display: flex;
+    flex-direction: column;
+    h2 {
+      text-align: center;
+    }
+    ul {
+      display: flex;
+      margin-top: 20px;
+      gap: 50px;
+      li {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        img {
+          width: 200px;
+          height: 200px;
+        }
+        span {
+          margin: 10px;
+        }
+      }
+    }
+  }
+
+  & > div:nth-child(n + 2) {
+    display: flex;
+    // justify-content: space-between;
+    width: 800px;
+    padding: 15px;
+
+    align-items: center;
+    input[type="text"],
+    input[type="email"] {
+      width: 90%;
+      border-radius: 4px;
+      outline: none;
+      border: 1px solid rgb(207, 207, 207);
+      padding: 10px;
+      margin-left: auto;
+    }
+    textarea {
+      margin-left: auto;
+      width: 100%;
+      height: 60px;
+      border-radius: 4px;
+      outline: none;
+      padding: 10px;
+      border: 1px solid rgb(207, 207, 207);
+    }
+    input[type="radio"] {
+      margin-left: 20px;
+    }
+    input[type="checkbox"] {
+      margin-left: 20px;
+      width: 18px;
+      height: 18px;
+    }
+    select {
+      margin-left: 10px;
+      border-radius: 2px;
+      padding: 5px;
+      outline: 0;
+    }
+  }
+  .back {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    button {
+      padding: 10px;
+      background: rgb(167, 47, 71);
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      font-size: 18px;
+    }
+    button:nth-child(2) {
+      background: rgb(45, 86, 102);
+    }
+  }
+}
+
+.load {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(36, 35, 35, 0.877);
+  left: 0;
+  top: 0;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  &-content {
+    background: white;
+    padding: 25px;
+    position: relative;
+    border-radius: 4px;
+    span {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: pointer;
+    }
+    &__coupon {
+      margin-top: 15px;
+      input {
+        padding: 5px;
+        outline: 0;
+        border-radius: 5px;
+        border: 1px solid black;
+      }
+      button {
+        padding: 5px;
       }
     }
   }
