@@ -1,5 +1,4 @@
-export default function (state, action) {
-  const newObj = [];
+export default function reducer (state, action) {
   switch (action.type) {
     case "add":
       return [
@@ -16,7 +15,6 @@ export default function (state, action) {
           },
         },
         // {}
-
       ];
 
     case "del":
@@ -39,7 +37,6 @@ export default function (state, action) {
           },
         },
         // {}
-
       ];
 
     case "reset":
@@ -50,6 +47,7 @@ export default function (state, action) {
             price: 3.0,
             ...state[0].pizza.ingredients.map((obj) => {
               obj.total = 0;
+              return obj;
             }),
           },
         },
@@ -64,8 +62,9 @@ export default function (state, action) {
       state = oldObj;
       oldObj[0].pizza.price = 3;
       oldObj[0].pizza.id = "";
-      oldObj[0].pizza.ingredients.map((el) => {
-        el.total = 0;
+      oldObj[0].pizza.ingredients.map((obj) => {
+        obj.total = 0;
+        return obj;
       });
       state.push(newObj[0]);
 
@@ -77,9 +76,8 @@ export default function (state, action) {
         state[0] = state[1];
         return state;
       }
-      console.log(state);
 
-    default:
-      return state;
+    // case "default":
+    //   return state;
   }
 }
